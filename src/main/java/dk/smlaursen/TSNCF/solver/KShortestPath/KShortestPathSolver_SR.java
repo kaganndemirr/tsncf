@@ -29,18 +29,14 @@ import main.java.dk.smlaursen.TSNCF.solver.UnicastCandidates;
  * for each src-dest nodes of an AVBApplication. Naturally, the greater K the better solution can be found, but as the shortest paths are in sorted order, the simples routes (Often yielding the best results) are evaluated first. 
  * So increase K with care, as it can quickly lead to excessive computation time use. */
 public class KShortestPathSolver_SR implements Solver {
-	private int K = 7;
+	private final int K;
 	private static final int MAX_HOPS = 10;
 	private static final int PROGRESS_PERIOD = 10000;
 
-	private static Logger logger = LoggerFactory.getLogger(KShortestPathSolver_SR.class.getSimpleName());
+	private static final Logger logger = LoggerFactory.getLogger(KShortestPathSolver_SR.class.getSimpleName());
 
 	//For storing the so far best solution
-	private Set<Unicast> bestRoute = new HashSet<Unicast>();
-
-	//For storing the TT-Applications 
-	private List<Unicast> ttRoutes;
-	private List<UnicastCandidates> avbRoutes;
+	private final Set<Unicast> bestRoute = new HashSet<>();
 
 	private boolean abortFlag;
 	
@@ -57,8 +53,9 @@ public class KShortestPathSolver_SR implements Solver {
 		///////////////////////////////////////////////////////
 		logger.debug("Retrieving all individual graphPaths");
 		GraphPaths gp = new GraphPaths(topology, applications, MAX_HOPS, K);
-		ttRoutes = gp.getTTRoutes();
-		avbRoutes = gp.getAVBRoutingCandidates();
+		//For storing the TT-Applications
+		List<Unicast> ttRoutes = gp.getTTRoutes();
+		List<UnicastCandidates> avbRoutes = gp.getAVBRoutingCandidates();
 
 		///////////////////////////////////////////////////////
 		//-- Then we calculate each permutation of these  -- //

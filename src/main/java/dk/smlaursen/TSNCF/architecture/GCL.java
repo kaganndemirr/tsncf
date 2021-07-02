@@ -1,8 +1,9 @@
 package main.java.dk.smlaursen.TSNCF.architecture;
 
 public class GCL {
-	private int afrequency;
-	private double aOffset, aDuration;
+	private final int afrequency;
+	private final double aOffset;
+	private final double aDuration;
 	
 	public GCL(double offset, double duration, int frequency){
 		aOffset = offset;
@@ -22,8 +23,6 @@ public class GCL {
 	}
 	
 	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("<").append(aOffset).append(",").append(aDuration).append(",").append(afrequency).append(">");
-		return sb.toString();
+		return "<" + aOffset + "," + aDuration + "," + afrequency + ">";
 	}
 }

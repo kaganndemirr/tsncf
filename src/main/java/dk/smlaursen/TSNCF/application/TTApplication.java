@@ -4,8 +4,7 @@ import java.util.Arrays;
 import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
 
 public class TTApplication extends Application{
-	private int ttInterval = 500;
-	private ExplicitPath explicitRoute;
+	private final ExplicitPath explicitRoute;
 	
 	/** Assumes that all TTApplications are periodic so payloadSize and NoOfFrames is enough */
 	public TTApplication(String name, ExplicitPath path, EndSystem src, EndSystem ...dest) {
@@ -19,16 +18,14 @@ public class TTApplication extends Application{
 	
 	@Override
 	public int getInterval() {
-		return ttInterval;
+		return 500;
 	}
 	
 	@Override
 	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("TT ").append(aTitle);
-		sb.append(" (").append(aSource).append(" -> ").append(Arrays.toString(aDestinations)).append(")");
-		sb.append(" Route (").append(explicitRoute).append(")");
-		return sb.toString();
+		return "TT " + aTitle +
+				" (" + aSource + " -> " + Arrays.toString(aDestinations) + ")" +
+				" Route (" + explicitRoute + ")";
 	}
 
 	@Override

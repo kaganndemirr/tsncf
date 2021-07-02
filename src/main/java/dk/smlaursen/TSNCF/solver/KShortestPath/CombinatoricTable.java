@@ -16,9 +16,9 @@ public class CombinatoricTable {
 	private long currCombination = 1;
 	
 	private boolean hasNext;
-	private byte[] indexTable;
-	private byte[] sizes;
-	private List<UnicastCandidates> graphPaths;
+	private final byte[] indexTable;
+	private final byte[] sizes;
+	private final List<UnicastCandidates> graphPaths;
 	
 	public CombinatoricTable(List<UnicastCandidates> paths){
 		hasNext = true;
@@ -52,7 +52,7 @@ public class CombinatoricTable {
 	}
 	
 	public List<Unicast> getCandidateSolution(){
-		List<Unicast> routing = new ArrayList<Unicast>();
+		List<Unicast> routing = new ArrayList<>();
 		for(int i = 0; i< graphPaths.size(); i++){
 			Application app = graphPaths.get(i).getApplication();
 			Node destNode = graphPaths.get(i).getDestNode();

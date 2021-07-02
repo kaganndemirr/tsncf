@@ -20,11 +20,11 @@ public class DisjointEdgesEvaluator implements Evaluator {
 	public Cost evaluate(final Collection<Unicast> routes,final Graph<Node, GCLEdge> graph) {
 		DisjointEdgesCost cost = new DisjointEdgesCost();
 		
-		HashMap<Application, HashSet<DefaultEdge>> map = new HashMap<Application, HashSet<DefaultEdge>>(); 
+		HashMap<Application, HashSet<DefaultEdge>> map = new HashMap<>();
 		//First we put all unqiue edges in the map
 		for(Unicast r : routes){
 			if(!map.containsKey(r.getApplication())){
-				map.put(r.getApplication(), new HashSet<DefaultEdge>());
+				map.put(r.getApplication(), new HashSet<>());
 			}
 			map.get(r.getApplication()).addAll(r.getRoute().getEdgeList());
 		}

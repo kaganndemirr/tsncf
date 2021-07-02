@@ -110,16 +110,11 @@ public class Main {
 			if(line.hasOption(SOLVER_ARG)){
 				solver = line.getOptionValue(SOLVER_ARG);
 			}
-			switch(solver){
-			case "exhaustive" :
-				s = new KShortestPathSolver_SR(K);
-				break;
-			case "GRASP" :
-				s = new GraspSolver(K);
-				break;
-			default :
-				throw new Error("Aborting : Solver "+solver+" unrecognized.");
-			}
+			s = switch (solver) {
+				case "exhaustive" -> new KShortestPathSolver_SR(K);
+				case "GRASP" -> new GraspSolver(K);
+				default -> throw new Error("Aborting : Solver " + solver + " unrecognized.");
+			};
 			
 			logger.info("Solving problem using "+solver+" solver");
 			Solution sol = s.solve(graph, apps, new ModifiedAVBEvaluator(), Duration.ofSeconds(60));
@@ -139,7 +134,7 @@ public class Main {
 				}
 			}
 		} catch (ParseException e) {
-			System.err.println(e);
+			e.printStackTrace();
 
 			HelpFormatter formatter = new HelpFormatter();
 			formatter.printHelp("ant", options );

@@ -10,7 +10,7 @@ import main.java.dk.smlaursen.TSNCF.architecture.Node;
 /** Class representing a routingCandidate, i.e. all considered routes for a given application streams*/
 public class UnicastCandidates extends Route{
 	//The ArrayList of GraphPaths making up all the
-	private ArrayList<GraphPath<Node, GCLEdge>> aRouting;
+	private final ArrayList<GraphPath<Node, GCLEdge>> aRouting;
 	
 	public UnicastCandidates(Application app, Node destNode, ArrayList<GraphPath<Node, GCLEdge>> paths){
 		aApp = app;

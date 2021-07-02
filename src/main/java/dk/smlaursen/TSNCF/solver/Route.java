@@ -14,11 +14,8 @@ public abstract class Route {
 	@Override
     public boolean equals(Object obj) {
 		
-		if(obj instanceof Route){
-			Route r = (Route) obj;
-			if(aApp.equals(r.aApp) && aDestNode.equals(r.aDestNode)){
-				return true;
-			}
+		if(obj instanceof Route r){
+			return aApp.equals(r.aApp) && aDestNode.equals(r.aDestNode);
 		}
 		return false;
     }

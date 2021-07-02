@@ -7,9 +7,11 @@ import java.util.Map;
 import main.java.dk.smlaursen.TSNCF.solver.Multicast;
 
 public class ModifiedAVBEvaluatorCost implements Cost, Comparator<ModifiedAVBEvaluatorCost> {
-	private double w1 = 10000, w2 = 3.0, w3 = 1.0, obj1, obj2, obj3;
+	private double obj1;
+	private double obj2;
+	private double obj3;
 	private boolean isUsed;
-	private Map<Multicast, Double> aWCDMap = new HashMap<Multicast, Double>(); 
+	private final Map<Multicast, Double> aWCDMap = new HashMap<>();
 	
 	public ModifiedAVBEvaluatorCost() {
 		reset();
@@ -25,16 +27,10 @@ public class ModifiedAVBEvaluatorCost implements Cost, Comparator<ModifiedAVBEva
 	
 	public void add(Objective e, double value){
 		isUsed = true;
-		switch(e){
-		case one:
-			obj1 += value;
-			break;
-		case two:
-			obj2 += value;
-			break;
-		case three:
-			obj3 += value;
-			break;
+		switch (e) {
+			case one -> obj1 += value;
+			case two -> obj2 += value;
+			case three -> obj3 += value;
 		}
 	}
 	
@@ -43,7 +39,10 @@ public class ModifiedAVBEvaluatorCost implements Cost, Comparator<ModifiedAVBEva
 		if(!isUsed){
 			return Double.MAX_VALUE;
 		}
-		return  w1*obj1 + w2*obj2 + w3*obj3;
+		double w1 = 10000;
+		double w2 = 3.0;
+		double w3 = 1.0;
+		return w1 * obj1 + w2 * obj2 + w3 * obj3;
 	}
 
 	@Override

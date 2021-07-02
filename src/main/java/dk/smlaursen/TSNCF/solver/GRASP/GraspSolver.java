@@ -38,13 +38,13 @@ public class GraspSolver implements Solver {
 	private Set<Unicast> bestSolution;
 	private final Object costLock = new Object();
 	private ExecutorService exec;
-	private int K = 50;
+	private final int K;
 
-	private static final int NO_OF_THREADS = Runtime.getRuntime().availableProcessors()/2;
+	private static final int NO_OF_THREADS = Runtime.getRuntime().availableProcessors();
 	private static final int PROGRESS_PERIOD = 10000;
 	private static final int MAX_HOPS = 20;
 
-	private static Logger logger = LoggerFactory.getLogger(GraspSolver.class.getSimpleName());
+	private static final Logger logger = LoggerFactory.getLogger(GraspSolver.class.getSimpleName());
 
 	private List<UnicastCandidates> avbRoutes;
 	private List<Unicast> ttRoutes;
@@ -61,7 +61,7 @@ public class GraspSolver implements Solver {
 		//                  -- Setup --                       //
 		///////////////////////////////////////////////////////
 		globalBestCost = new ModifiedAVBEvaluatorCost();
-		bestSolution = new HashSet<Unicast>();
+		bestSolution = new HashSet<>();
 
 		aTopology = topology;
 		aEval = eval;
@@ -75,7 +75,7 @@ public class GraspSolver implements Solver {
 		if(logger.isInfoEnabled()){
 			TimerTask progressUpdater = new TimerTask() {
 				private int i = 0;
-				private DecimalFormat numberFormat = new DecimalFormat(".00");
+				private final DecimalFormat numberFormat = new DecimalFormat(".00");
 				@Override
 				public void run() {
 					//Report progress every 10sec
@@ -136,8 +136,8 @@ public class GraspSolver implements Solver {
 					continue;
 				}
 				//STEP 2 : Perform a local search, to improve the result.
-				solution = localSearch(solution);
-				
+				localSearch(solution);
+
 				//Evaluate and see if better than anything we have seen before
 				Cost cost = aEval.evaluate(solution, aTopology);
 				//pre-check before entering critical-section
@@ -173,21 +173,19 @@ public class GraspSolver implements Solver {
 			aTemporaryList = null;
 
 			//Then within an application, we select the
-			for(int i = 0; i < aRandomizedRoutingCandidateList.size();i++){
-				UnicastCandidates uc = aRandomizedRoutingCandidateList.get(i);
-
+			for (UnicastCandidates uc : aRandomizedRoutingCandidateList) {
 				Cost currBestCost = new ModifiedAVBEvaluatorCost();
 				Unicast currUnicast;
 				Unicast currBestUnicast = null;
-				for(int u = 0; u < Math.max(3, K/4); u++){
+				for (int u = 0; u < Math.max(3, K / 4); u++) {
 					//Of selecting one of the first elements.
 					int index = ThreadLocalRandom.current().nextInt(uc.getCandidates().size());
 //					int index = RandomDistributions.RouletteWheelDistribution(uc.getCandidates().size());
-					currUnicast = new Unicast(aRandomizedRoutingCandidateList.get(i).getApplication(), uc.getDestNode(), uc.getCandidates().get(index));
+					currUnicast = new Unicast(uc.getApplication(), uc.getDestNode(), uc.getCandidates().get(index));
 					//Add solution and evaluate
 					partialSolution.add(currUnicast);
 					Cost cost = aEval.evaluate(partialSolution, aTopology);
-					if(cost.getTotalCost() < currBestCost.getTotalCost()){
+					if (cost.getTotalCost() < currBestCost.getTotalCost()) {
 						currBestCost = cost;
 						currBestUnicast = currUnicast;
 					}
@@ -196,7 +194,7 @@ public class GraspSolver implements Solver {
 
 				}
 				//We're only interested in feasible solutions
-				if(currBestUnicast == null){
+				if (currBestUnicast == null) {
 					return null;
 				} else {
 					partialSolution.add(currBestUnicast);
@@ -206,7 +204,7 @@ public class GraspSolver implements Solver {
 		}
 
 		/** Stochastic Steepest Hill algorithm */
-		private List<Unicast> localSearch(List<Unicast> solution){
+		private void localSearch(List<Unicast> solution){
 			Cost cost = aEval.evaluate(solution, aTopology);
 			Cost bestCost = cost;
 
@@ -220,8 +218,7 @@ public class GraspSolver implements Solver {
 				
 				Unicast old = solution.get(index);
 				Route uc = mapping.get(old);
-				if(uc instanceof UnicastCandidates){
-					UnicastCandidates candidate = (UnicastCandidates) uc;
+				if(uc instanceof UnicastCandidates candidate){
 					//Sorted on their length (Shortest first), so iterate from the beginning of the list (Where the largest improvements are expected).
 					for(int i = 0; i < candidate.getCandidates().size(); i++){
 						Unicast temp = new Unicast(old.getApplication(), old.getDestNode(), candidate.getCandidates().get(i)); 
@@ -248,7 +245,6 @@ public class GraspSolver implements Solver {
 //					throw new InternalError("Consistency error in localSearch() method");
 				}
 			}
-			return solution;
 		}
 	}
 }

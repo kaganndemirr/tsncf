@@ -27,7 +27,7 @@ public class TopologyParser {
 	private static final double DEVICE_DELAY = 5.12;
 	
 	public static AbstractBaseGraph<Node, GCLEdge> parse(File f, int rate){
-		AbstractBaseGraph<Node, GCLEdge> graph = new SimpleDirectedGraph<Node, GCLEdge>(GCLEdge.class);
+		AbstractBaseGraph<Node, GCLEdge> graph = new SimpleDirectedGraph<>(GCLEdge.class);
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		Document dom;
@@ -38,16 +38,15 @@ public class TopologyParser {
 			Element docEle = dom.getDocumentElement();
 
 			Element graphEle = (Element) docEle.getElementsByTagName("graph").item(0);
-			Map<String, Node> nodeMap = new HashMap<String, Node>();
+			Map<String, Node> nodeMap = new HashMap<>();
 			
 			String edgeDefault = graphEle.getAttribute("edgedefault");
-			boolean isDirected;
-			switch(edgeDefault){
-			case "directed" : isDirected = true; break;
-			case "undirected" : isDirected = false; break;
-			default : throw new InputMismatchException("edgeDefault "+edgeDefault+" is not supported");
-			}
-			
+			boolean isDirected = switch (edgeDefault) {
+				case "directed" -> true;
+				case "undirected" -> false;
+				default -> throw new InputMismatchException("edgeDefault " + edgeDefault + " is not supported");
+			};
+
 			//Parse nodes and create graph-vertices accordingly
 			NodeList nl = graphEle.getElementsByTagName("node");
 			if(nl != null && nl.getLength() > 0){
@@ -92,12 +91,8 @@ public class TopologyParser {
 				}
 			}
 			nodeMap.clear();
-		} catch(ParserConfigurationException pce){
+		} catch(ParserConfigurationException | SAXException | IOException pce){
 			pce.printStackTrace();
-		} catch(SAXException se){
-			se.printStackTrace();
-		} catch(IOException ioe){
-			ioe.printStackTrace();
 		}
 		return graph;
 	}

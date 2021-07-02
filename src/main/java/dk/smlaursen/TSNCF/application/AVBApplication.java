@@ -6,9 +6,10 @@ import java.util.List;
 import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
 
 public class AVBApplication extends Application {
-	private AVBClass aAVBClass;
-	private List<String> aModes;
-	private int aNoOfFramesPerInterval,aMaxFrameSize;
+	private final AVBClass aAVBClass;
+	private final List<String> aModes;
+	private final int aNoOfFramesPerInterval;
+	private final int aMaxFrameSize;
 	
 	public AVBApplication (String name, List<String> modes, AVBClass type, int payloadSize, int noOfFrames, EndSystem src, EndSystem ...dest){
 		super(name, src, dest);
@@ -44,11 +45,9 @@ public class AVBApplication extends Application {
 	}
 	
 	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("AVB ").append(aTitle).append(" ").append(aModes);
-		sb.append(" : ").append(aAVBClass);
-		sb.append(" (").append(aNoOfFramesPerInterval).append("x").append(aMaxFrameSize).append("B / ").append(getInterval()).append("us)");
-		sb.append(" (").append(aSource).append(" -> ").append(Arrays.toString(aDestinations)).append(")");
-		return sb.toString();
+		return "AVB " + aTitle + " " + aModes +
+				" : " + aAVBClass +
+				" (" + aNoOfFramesPerInterval + "x" + aMaxFrameSize + "B / " + getInterval() + "us)" +
+				" (" + aSource + " -> " + Arrays.toString(aDestinations) + ")";
 	}
 }

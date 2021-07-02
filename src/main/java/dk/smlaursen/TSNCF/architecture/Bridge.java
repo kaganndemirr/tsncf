@@ -1,8 +1,8 @@
 package main.java.dk.smlaursen.TSNCF.architecture;
 
 public class Bridge extends Node {
-	private int aRateMBPS;
-	private double aMacDelay_us;
+	private final int aRateMBPS;
+	private final double aMacDelay_us;
 	
 	public Bridge(String id){
 		aId = id;

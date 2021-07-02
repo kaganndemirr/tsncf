@@ -8,13 +8,10 @@ public class RandomDistributions {
 	   double r = ThreadLocalRandom.current().nextDouble();
 	   int index = 0;
 	   double val = 0.5;
-	   while(true){
-		   if(r > val || index >= size-1){
-			   break;
-		   }
-		   index++;
-		   val = val / 2.0;
-	   }
+		while (!(r > val) && index < size - 1) {
+			index++;
+			val = val / 2.0;
+		}
 	   return index;
 	}
 }

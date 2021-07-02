@@ -30,7 +30,7 @@ public class ModifiedAVBEvaluator implements Evaluator{
 	/** The maximum BE frame-size*/
 	private final static int MAX_BE_FRAME_BYTES = 1522;
 
-	private static Logger logger = LoggerFactory.getLogger(ModifiedAVBEvaluator.class.getSimpleName());
+	private static final Logger logger = LoggerFactory.getLogger(ModifiedAVBEvaluator.class.getSimpleName());
 
 	@Override
 	public Cost evaluate(Collection<Unicast> route, Graph<Node, GCLEdge> graph) {
@@ -40,10 +40,9 @@ public class ModifiedAVBEvaluator implements Evaluator{
 		ModifiedAVBEvaluatorCost cost = new ModifiedAVBEvaluatorCost();
 
 		// Then we identify all the different modes 
-		Map<String, Set<Multicast>> modeMap = new HashMap<String, Set<Multicast>>();
+		Map<String, Set<Multicast>> modeMap = new HashMap<>();
 		for(Multicast m : multicasts){
-			if(m.getApplication() instanceof AVBApplication){
-				AVBApplication app = (AVBApplication) m.getApplication();
+			if(m.getApplication() instanceof AVBApplication app){
 				for(String mode : app.getModes()){
 					if(!modeMap.containsKey(mode)){
 						modeMap.put(mode, new HashSet<Multicast>());
@@ -65,11 +64,11 @@ public class ModifiedAVBEvaluator implements Evaluator{
 				throw new IllegalArgumentException("Unsupported application class '"+m.getApplication().getClass().getSimpleName()+"' of "+m.getApplication().getTitle());
 			}
 		}
-		HashMap<Application, HashSet<GCLEdge>> edgeMap = new HashMap<Application, HashSet<GCLEdge>>(); 
+		HashMap<Application, HashSet<GCLEdge>> edgeMap = new HashMap<>();
 		//First we put all unqiue edges in the map
 		for(Unicast r : route){
 			if(!edgeMap.containsKey(r.getApplication())){
-				edgeMap.put(r.getApplication(), new HashSet<GCLEdge>());
+				edgeMap.put(r.getApplication(), new HashSet<>());
 			}
 			edgeMap.get(r.getApplication()).addAll(r.getRoute().getEdgeList());
 		}
@@ -83,7 +82,7 @@ public class ModifiedAVBEvaluator implements Evaluator{
 		
 		//Then we run through each mode
 		for(String mode : modeMap.keySet()){
-			Set<Multicast> rs_in_curr_mode = new HashSet<Multicast>(modeMap.get(mode));
+			Set<Multicast> rs_in_curr_mode = new HashSet<>(modeMap.get(mode));
 
 			//Clear allocationMap before evaluating next mode
 			allocMap.clear();
@@ -160,9 +159,8 @@ public class ModifiedAVBEvaluator implements Evaluator{
 		double tIFG = 12*8 / edge.getRateMbps();
 		//Sum of transmission times of all Class A stream frames in a 125us interval
 		double tAllStreams = totalAlloc_mbps * app.getInterval() / edge.getRateMbps();
-		double maxLatency = edge.getLatency() + edge.calculateWorstCaseInterference((tMaxPacket+tIFG +
-				tAllStreams - (tStreamPacket+tIFG)) * (edge.getRateMbps()/capacity)/100 + 
-				tStreamPacket); 
-		return maxLatency; 
+		return edge.getLatency() + edge.calculateWorstCaseInterference((tMaxPacket+tIFG +
+				tAllStreams - (tStreamPacket+tIFG)) * (edge.getRateMbps()/capacity)/100 +
+				tStreamPacket);
 	}
 }

@@ -17,8 +17,8 @@ import main.java.dk.smlaursen.TSNCF.architecture.Node;
 public class GraphPaths {
 	
 	//For storing the AVB- and TT-Applications 
-	private List<Unicast> ttRoutes;
-	private List<UnicastCandidates> avbRoutes;
+	private final List<Unicast> ttRoutes;
+	private final List<UnicastCandidates> avbRoutes;
 
 	public GraphPaths(final Graph<Node, GCLEdge> topology,final List<Application> applications, int MAX_HOPS, int K){
 		///////////////////////////////////////////////////////
@@ -69,10 +69,10 @@ public class GraphPaths {
 	
 	/**Method which converts the routing of a {@link TTApplication} to a {@link Unicast}*/
 	private List<Unicast> convertTTApplicationToRouting(TTApplication ttApp, Graph<Node, GCLEdge> graph){
-		ArrayList<Unicast> aRouting = new ArrayList<Unicast>(ttApp.getDestinations().length);
+		ArrayList<Unicast> aRouting = new ArrayList<>(ttApp.getDestinations().length);
 		try{
 			for(int i=0; i<ttApp.getDestinations().length; i++){
-				List<GCLEdge> edgeList = new ArrayList<GCLEdge>();
+				List<GCLEdge> edgeList = new ArrayList<>();
 				
 				Node prev = ttApp.getSource();
 				for(Node curr : ttApp.getExplicitPath().getPath().get(i)){
@@ -82,7 +82,7 @@ public class GraphPaths {
 				edgeList.add(graph.getEdge(prev, ttApp.getDestinations()[i]));
 				
 				for(int u = 0; u < edgeList.size(); u++){
-					List<GCL> gcls = new LinkedList<GCL>();
+					List<GCL> gcls = new LinkedList<>();
 					//Add offset (Here we just use the duration of the transmission as offset per hop)
 					for(GCL g : ttApp.getExplicitPath().getGCL()){
 						gcls.add(new GCL(g.getOffset()+g.getDuration()*u, g.getDuration(), g.getFrequency()));
@@ -90,7 +90,7 @@ public class GraphPaths {
 					//Put the GCL on all the GCLEdges in the edgeList
 					edgeList.get(u).addGCL(gcls);
 				}
-				GraphPath<Node, GCLEdge> gp = new GraphPathImpl<Node, GCLEdge>(graph, ttApp.getSource(), ttApp.getDestinations()[i], edgeList, 1.0);
+				GraphPath<Node, GCLEdge> gp = new GraphPathImpl<>(graph, ttApp.getSource(), ttApp.getDestinations()[i], edgeList, 1.0);
 				aRouting.add(new Unicast(ttApp,ttApp.getDestinations()[i], gp));
 			}
 			

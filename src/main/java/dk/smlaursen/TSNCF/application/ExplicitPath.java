@@ -6,8 +6,8 @@ import main.java.dk.smlaursen.TSNCF.architecture.Bridge;
 import main.java.dk.smlaursen.TSNCF.architecture.GCL;
 
 public class ExplicitPath {
-	private List<GCL> aGCL;
-	private List<List<Bridge>> aPath;
+	private final List<GCL> aGCL;
+	private final List<List<Bridge>> aPath;
 	
 	public ExplicitPath(List<GCL> gcl, List<List<Bridge>> path){
 		aGCL = gcl;

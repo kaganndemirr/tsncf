@@ -10,10 +10,10 @@ import main.java.dk.smlaursen.TSNCF.application.Application;
 
 public class Multicast {
 		//The Application
-		private Application aApp;
+		private final Application aApp;
 		
 		//The ArrayList of unicast routes making up the multicast
-		private List<Unicast> aRouting;
+		private final List<Unicast> aRouting;
 		
 		public Multicast(Application app, List<Unicast> unicasts){
 			aApp = app;
@@ -35,12 +35,9 @@ public class Multicast {
 		
 		@Override
 		public boolean equals(Object o){
-			if(o instanceof Multicast){
-				Multicast obj = (Multicast) o;
-				if(obj.getApplication().equals(getApplication()) &&
-					obj.getUnicasts().equals(getUnicasts())){	
-					return true;
-				}
+			if(o instanceof Multicast obj){
+				return obj.getApplication().equals(getApplication()) &&
+						obj.getUnicasts().equals(getUnicasts());
 			}
 			return false;
 		}
@@ -51,14 +48,14 @@ public class Multicast {
 		}
 		
 		public static List<Multicast> generateMulticasts(Collection<Unicast> col){
-			Map<Application, ArrayList<Unicast>> map = new HashMap<Application, ArrayList<Unicast>>();
+			Map<Application, ArrayList<Unicast>> map = new HashMap<>();
 			for(Unicast uc : col){
 				if(!map.containsKey(uc.getApplication())){
-					map.put(uc.getApplication(), new ArrayList<Unicast>());
+					map.put(uc.getApplication(), new ArrayList<>());
 				}
 				map.get(uc.getApplication()).add(uc);
 			}
-			List<Multicast> mc = new ArrayList<Multicast>();
+			List<Multicast> mc = new ArrayList<>();
 			for(Application a : map.keySet()){
 				mc.add(new Multicast(a, map.get(a)));
 			}

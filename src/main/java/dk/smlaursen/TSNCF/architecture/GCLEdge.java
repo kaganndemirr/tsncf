@@ -1,5 +1,6 @@
 package main.java.dk.smlaursen.TSNCF.architecture;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,12 +10,13 @@ import java.util.List;
 import org.jgrapht.graph.DefaultEdge;
 
 public class GCLEdge extends DefaultEdge {
+	@Serial
 	private static final long serialVersionUID = 3927841355223720495L;
 	private static final double MAX_ALLOC = 0.75;
 
-	private List<GCL> aGCLList = new LinkedList<GCL>();
-	private int aRate;
-	private double aLatency;
+	private final List<GCL> aGCLList = new LinkedList<GCL>();
+	private final int aRate;
+	private final double aLatency;
 
 	/**Constructor
 	 * @param rateMbps the transmission speed of the link*/
@@ -92,15 +94,15 @@ public class GCLEdge extends DefaultEdge {
 			double period = 500.0 / gcl.getFrequency();
 			for(int i = 0; i < gcl.getFrequency(); i ++){
 				double start = gcl.getOffset()+i*period;
-				gces.add(new GCE(start, start+gcl.getDuration()));
+				gces.add(new GCE(start, start + gcl.getDuration()));
 			}
 		}
 		//Sort GCEs on their start-times
 		Collections.sort(gces, new Comparator<GCE>() {
 			@Override
 			public int compare(GCE o1, GCE o2) {
-				Double g1 = new Double(o1.getStart());
-				Double g2 = new Double(o2.getStart());
+				Double g1 = o1.getStart();
+				Double g2 = o2.getStart();
 				return g1.compareTo(g2);
 			}
 		});
@@ -108,8 +110,9 @@ public class GCLEdge extends DefaultEdge {
 		return gces;
 	}
 	//// Helper class for
-	private class GCE{
-		private double aStart, aEnd;
+	private static class GCE{
+		private final double aStart;
+		private final double aEnd;
 
 		GCE(double start, double end){
 			aStart = start;

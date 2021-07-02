@@ -40,62 +40,45 @@ import main.java.dk.smlaursen.TSNCF.architecture.Node;
 import main.java.dk.smlaursen.TSNCF.solver.Multicast;
 
 public class Visualizer{
-	private Object[] endSystems, bridges, edges, highlightedVls;
-	private mxGraphModel graphModel;
-	private mxGraphComponent canvasComponent;
-	private Collection<Object> cells;
-	private JComboBox<Multicast> comboBox;
-	private JPanel zoomPanel = new JPanel(new BorderLayout());
+	private final Object[] edges;
+	private Object[] highlightedVls;
+	private final mxGraphModel graphModel;
+	private final mxGraphComponent canvasComponent;
+	private final Collection<Object> cells;
+	private final JComboBox<Multicast> comboBox;
+	private final JPanel zoomPanel = new JPanel(new BorderLayout());
 
 	/**Setups the topology in a JFrame.
 	 * This call requires the libraries JGraphX and JGraphT-ext to be present on the classpath
 	 * @param g the {@link Graph} to display*/
 	public Visualizer(final Graph<Node, GCLEdge> g){
-		JGraphXAdapter<Node, GCLEdge> adapter = new JGraphXAdapter<Node, GCLEdge>(g);
+		JGraphXAdapter<Node, GCLEdge> adapter = new JGraphXAdapter<>(g);
 		canvasComponent = new mxGraphComponent(adapter);
 		canvasComponent.getViewport().setOpaque(true);
 		canvasComponent.getViewport().setBackground(Color.WHITE);
 		graphModel = (mxGraphModel) canvasComponent.getGraph().getModel();
 		cells = graphModel.getCells().values();
 		//Filter to get endSystems
-		endSystems = mxGraphModel.filterCells(cells.toArray(), new Filter() {
-			@Override
-			public boolean filter(Object cell) {
-				if(cell instanceof mxCell){
-					mxCell mxc = (mxCell) cell;
-					if(mxc.getValue() instanceof EndSystem){
-						return true;
-					}
-				}
-				return false;
+		Object[] endSystems = mxGraphModel.filterCells(cells.toArray(), cell -> {
+			if (cell instanceof mxCell mxc) {
+				return mxc.getValue() instanceof EndSystem;
 			}
+			return false;
 		});
 
-		bridges = mxGraphModel.filterCells(cells.toArray(), new Filter() {
-			@Override
-			public boolean filter(Object cell) {
-				if(cell instanceof mxCell){
-					mxCell mxc = (mxCell) cell;
-					if(mxc.getValue() instanceof Bridge){
-						return true;
-					}
-				}
-				return false;
+		Object[] bridges = mxGraphModel.filterCells(cells.toArray(), cell -> {
+			if (cell instanceof mxCell mxc) {
+				return mxc.getValue() instanceof Bridge;
 			}
+			return false;
 		});
 		
 		//Filter to get edges
-		edges = mxGraphModel.filterCells(cells.toArray(), new Filter() {
-			@Override
-			public boolean filter(Object cell) {
-				if(cell instanceof mxCell){
-					mxCell mxc = (mxCell) cell;
-					if(mxc.getValue() instanceof DefaultEdge){
-						return true;
-					}
-				}
-				return false;
+		edges = mxGraphModel.filterCells(cells.toArray(), cell -> {
+			if(cell instanceof mxCell mxc){
+				return mxc.getValue() instanceof DefaultEdge;
 			}
+			return false;
 		});
 
 		mxStyleUtils.setCellStyles(graphModel, edges, mxConstants.STYLE_NOLABEL ,"1");
@@ -111,14 +94,11 @@ public class Visualizer{
 		new mxFastOrganicLayout(adapter).execute(adapter.getDefaultParent());
 		new mxParallelEdgeLayout(canvasComponent.getGraph()).execute(adapter.getDefaultParent());
 		//Setup combobox
-		comboBox = new JComboBox<Multicast>();
-		comboBox.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Multicast r = (Multicast) comboBox.getSelectedItem();
-				if(r != null)
-					displayRoute(r);
-			}
+		comboBox = new JComboBox<>();
+		comboBox.addActionListener(e -> {
+			Multicast r = (Multicast) comboBox.getSelectedItem();
+			if(r != null)
+				displayRoute(r);
 		});
 		JSlider slider = new JSlider(SwingConstants.VERTICAL, 5, 50, 10);
 		zoomPanel.add(new JLabel("Zoom "), BorderLayout.NORTH);
@@ -169,7 +149,7 @@ public class Visualizer{
 	}
 
 	private void displayRoute(final Multicast route){
-		Set<DefaultEdge> edgeSet = new HashSet<DefaultEdge>();
+		Set<DefaultEdge> edgeSet = new HashSet<>();
 		for(int i = 0; i < route.getUnicasts().size(); i++){
 			edgeSet.addAll(route.getUnicasts().get(i).getRoute().getEdgeList());
 		}
@@ -177,22 +157,16 @@ public class Visualizer{
 		highlightedVls = mxGraphModel.filterCells(cells.toArray(), new Filter() {
 			@Override
 			public boolean filter(Object cell) {
-				if(cell instanceof mxCell){
-					mxCell mxc = (mxCell) cell;
-					if(mxc.getValue() instanceof DefaultEdge && edgeSet.contains(mxc.getValue())){
-						return true;
-					}
+				if(cell instanceof mxCell mxc){
+					return mxc.getValue() instanceof DefaultEdge && edgeSet.contains(mxc.getValue());
 				}
 				return false;
 			}
 		});
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				mxStyleUtils.setCellStyles(graphModel, edges, mxConstants.STYLE_STROKECOLOR, "black");
-				mxStyleUtils.setCellStyles(graphModel, highlightedVls, mxConstants.STYLE_STROKECOLOR, "red");
-			}
+		SwingUtilities.invokeLater(() -> {
+			mxStyleUtils.setCellStyles(graphModel, edges, mxConstants.STYLE_STROKECOLOR, "black");
+			mxStyleUtils.setCellStyles(graphModel, highlightedVls, mxConstants.STYLE_STROKECOLOR, "red");
 		});
 
 	}

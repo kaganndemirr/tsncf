@@ -6,8 +6,8 @@ import main.java.dk.smlaursen.TSNCF.evaluator.Cost;
 
 /** Return type wrapper */
 public class Solution {
-	private Cost aCost;
-	private List<Multicast> aRouting;
+	private final Cost aCost;
+	private final List<Multicast> aRouting;
 
 	public Solution(Cost c, List<Multicast> m){
 		aCost = c;

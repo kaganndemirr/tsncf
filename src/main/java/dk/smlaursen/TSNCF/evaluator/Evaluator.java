@@ -2,6 +2,7 @@ package main.java.dk.smlaursen.TSNCF.evaluator;
 
 import java.util.Collection;
 
+import main.java.dk.smlaursen.TSNCF.solver.Solver;
 import org.jgrapht.Graph;
 
 import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
@@ -16,6 +17,6 @@ public interface Evaluator {
 	 * @param route the Collection of {@link Unicast}s containing the SR-Apps to be evaluated
 	 * @param graph the {@link Graph} containing the topology.
 	 * @return the {@Cost}*/
-	public Cost evaluate(final Collection<Unicast> route, final Graph<Node, GCLEdge> graph);
+	Cost evaluate(final Collection<Unicast> route, final Graph<Node, GCLEdge> graph);
 }
 

@@ -15,7 +15,7 @@ public class GCLEdgeTestMultipleStreams {
 	
 	@BeforeClass
 	public static void setup(){
-		List<GCL> gcls = new LinkedList<GCL>();
+		List<GCL> gcls = new LinkedList<>();
 		gcls.add(new GCL(0.0,10.4,8));
 		gcls.add(new GCL(31.25,10.4,8));
 		edge = new GCLEdge(100, 5.12);

@@ -27,13 +27,13 @@ import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
 import main.java.dk.smlaursen.TSNCF.architecture.GCL;
 
 public class ApplicationParser {
-	private static Logger logger = LoggerFactory.getLogger(ApplicationParser.class.getSimpleName());
+	private static final Logger logger = LoggerFactory.getLogger(ApplicationParser.class.getSimpleName());
 	/**Parses the applications from an XML file
 	 * @param f the XML formatted {@link File}
 	 * @return a List of {@link Application}s  */
 	public static List<Application> parse(File f){
 
-		List<Application> applications = new LinkedList<Application>();
+		List<Application> applications = new LinkedList<>();
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		Document dom;
@@ -68,12 +68,8 @@ public class ApplicationParser {
 					applications.add(ttApp);
 				}
 			}
-		} catch(ParserConfigurationException pce){
+		} catch(ParserConfigurationException | SAXException | IOException pce){
 			pce.printStackTrace();
-		} catch(SAXException se){
-			se.printStackTrace();
-		} catch(IOException ioe){
-			ioe.printStackTrace();
 		}
 
 		return applications;
@@ -81,7 +77,7 @@ public class ApplicationParser {
 
 	/**Parses an element into a {@link AVBApplication}
 	 * @param srAppEle the AVBApplicationElement
-	 * @throws A
+	 * @throws
 	 * @return The corresponding {@link AVBApplication}*/
 	private static AVBApplication getAVBApplication(Element srAppEle){
 		String name = srAppEle.getAttribute("name");
@@ -150,7 +146,7 @@ public class ApplicationParser {
 	}
 
 	private static List<String> parseModes(Element ele){
-		List<String> modes = new LinkedList<String>();
+		List<String> modes = new LinkedList<>();
 		NodeList nl = ele.getElementsByTagName("Mode");
 		if(nl != null && nl.getLength()>0){
 			for(int i = 0; i<nl.getLength(); i++){
@@ -173,7 +169,7 @@ public class ApplicationParser {
 		NodeList gclNL = destEl.getElementsByTagName("GCL");
 		//Parse GCL
 		if(gclNL != null && gclNL.getLength() > 0){
-			gcl = new LinkedList<GCL>();
+			gcl = new LinkedList<>();
 			for(int i=0; i < gclNL.getLength(); i++){
 				double off = Double.parseDouble(((Element) gclNL.item(i)).getAttribute("offset"));
 				double dur = Double.parseDouble(((Element) gclNL.item(i)).getAttribute("duration"));
@@ -183,7 +179,7 @@ public class ApplicationParser {
 		}
 		//Parse Path
 		if(destNL != null && destNL.getLength() > 0){
-			path = new ArrayList<List<Bridge>>(destNL.getLength());
+			path = new ArrayList<>(destNL.getLength());
 			for(int i= 0; i < destNL.getLength(); i++){
 				Element routeEL = (Element) ele.getElementsByTagName("Route").item(0);
 				if(routeEL == null){
@@ -194,7 +190,7 @@ public class ApplicationParser {
 				} else {
 					NodeList routeNL = routeEL.getElementsByTagName("Bridge");
 					if(routeNL != null && routeNL.getLength() > 0){
-						path.add(i, new LinkedList<Bridge>());
+						path.add(i, new LinkedList<>());
 						for(int u= 0; u < routeNL.getLength(); u++){
 							path.get(i).add(new Bridge(((Element) routeNL.item(u)).getAttribute("name")));
 						}
