@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="tsncf-libraries">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/tsncf-libraries" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/tsncf-libraries" recursive="false" />
+  </library>
+</component>

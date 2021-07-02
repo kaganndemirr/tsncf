@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.evaluator;
+package main.java.dk.smlaursen.TSNCF.evaluator;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,14 +12,14 @@ import org.jgrapht.Graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.application.AVBApplication;
-import dk.smlaursen.TSNCF.application.TTApplication;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
-import dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluatorCost.Objective;
-import dk.smlaursen.TSNCF.solver.Multicast;
-import dk.smlaursen.TSNCF.solver.Unicast;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.application.AVBApplication;
+import main.java.dk.smlaursen.TSNCF.application.TTApplication;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluatorCost.Objective;
+import main.java.dk.smlaursen.TSNCF.solver.Multicast;
+import main.java.dk.smlaursen.TSNCF.solver.Unicast;
 
 /** This {@link Evaluator} is used for calculating the cost of the given {@link Unicast} assignment taking SR- and TT-timings into account.*/
 public class ModifiedAVBEvaluator implements Evaluator{

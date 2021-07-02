@@ -1,9 +1,9 @@
-package dk.smlaursen.TSNCF.application;
+package main.java.dk.smlaursen.TSNCF.application;
 
 import java.util.Arrays;
 import java.util.List;
 
-import dk.smlaursen.TSNCF.architecture.EndSystem;
+import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
 
 public class AVBApplication extends Application {
 	private AVBClass aAVBClass;

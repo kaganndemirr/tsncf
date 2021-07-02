@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.solver;
+package main.java.dk.smlaursen.TSNCF.solver;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -8,11 +8,11 @@ import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.KShortestPaths;
 import org.jgrapht.graph.GraphPathImpl;
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.application.TTApplication;
-import dk.smlaursen.TSNCF.architecture.GCL;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.application.TTApplication;
+import main.java.dk.smlaursen.TSNCF.architecture.GCL;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
 
 public class GraphPaths {
 	

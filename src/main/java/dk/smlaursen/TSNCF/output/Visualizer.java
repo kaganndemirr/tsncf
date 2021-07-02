@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.output;
+package main.java.dk.smlaursen.TSNCF.output;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,11 +33,11 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxStyleUtils;
 import com.mxgraph.view.mxGraphView;
 
-import dk.smlaursen.TSNCF.architecture.Bridge;
-import dk.smlaursen.TSNCF.architecture.EndSystem;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
-import dk.smlaursen.TSNCF.solver.Multicast;
+import main.java.dk.smlaursen.TSNCF.architecture.Bridge;
+import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.solver.Multicast;
 
 public class Visualizer{
 	private Object[] endSystems, bridges, edges, highlightedVls;

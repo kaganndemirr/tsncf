@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.solver.KShortestPath;
+package main.java.dk.smlaursen.TSNCF.solver.KShortestPath;
 
 import java.time.Duration;
 import java.util.HashSet;
@@ -12,18 +12,18 @@ import org.jgrapht.alg.KShortestPaths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
-import dk.smlaursen.TSNCF.evaluator.Cost;
-import dk.smlaursen.TSNCF.evaluator.Evaluator;
-import dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluatorCost;
-import dk.smlaursen.TSNCF.solver.GraphPaths;
-import dk.smlaursen.TSNCF.solver.Multicast;
-import dk.smlaursen.TSNCF.solver.Solution;
-import dk.smlaursen.TSNCF.solver.Solver;
-import dk.smlaursen.TSNCF.solver.Unicast;
-import dk.smlaursen.TSNCF.solver.UnicastCandidates;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.evaluator.Cost;
+import main.java.dk.smlaursen.TSNCF.evaluator.Evaluator;
+import main.java.dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluatorCost;
+import main.java.dk.smlaursen.TSNCF.solver.GraphPaths;
+import main.java.dk.smlaursen.TSNCF.solver.Multicast;
+import main.java.dk.smlaursen.TSNCF.solver.Solution;
+import main.java.dk.smlaursen.TSNCF.solver.Solver;
+import main.java.dk.smlaursen.TSNCF.solver.Unicast;
+import main.java.dk.smlaursen.TSNCF.solver.UnicastCandidates;
 
 /**The KShortestPathSolver_SR relies on the {@link KShortestPaths} algorithm in the jgrapht library to calculate the K shortest paths
  * for each src-dest nodes of an AVBApplication. Naturally, the greater K the better solution can be found, but as the shortest paths are in sorted order, the simples routes (Often yielding the best results) are evaluated first. 

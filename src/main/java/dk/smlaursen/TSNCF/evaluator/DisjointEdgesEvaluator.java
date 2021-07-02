@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.evaluator;
+package main.java.dk.smlaursen.TSNCF.evaluator;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -7,10 +7,10 @@ import java.util.HashSet;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
 
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
-import dk.smlaursen.TSNCF.solver.Unicast;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.solver.Unicast;
 
 /** DisjointEdgesEvaluator is a simple evaluator that just counts the number of disjoint edges used.
  *  The fewer the better. */

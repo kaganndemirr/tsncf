@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF;
+package main.java.dk.smlaursen.TSNCF;
 
 import java.io.File;
 import java.time.Duration;
@@ -16,18 +16,18 @@ import org.jgrapht.Graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
-import dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluator;
-import dk.smlaursen.TSNCF.output.FileWriter;
-import dk.smlaursen.TSNCF.output.Visualizer;
-import dk.smlaursen.TSNCF.parser.ApplicationParser;
-import dk.smlaursen.TSNCF.parser.TopologyParser;
-import dk.smlaursen.TSNCF.solver.Solution;
-import dk.smlaursen.TSNCF.solver.Solver;
-import dk.smlaursen.TSNCF.solver.GRASP.GraspSolver;
-import dk.smlaursen.TSNCF.solver.KShortestPath.KShortestPathSolver_SR;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluator;
+import main.java.dk.smlaursen.TSNCF.output.FileWriter;
+import main.java.dk.smlaursen.TSNCF.output.Visualizer;
+import main.java.dk.smlaursen.TSNCF.parser.ApplicationParser;
+import main.java.dk.smlaursen.TSNCF.parser.TopologyParser;
+import main.java.dk.smlaursen.TSNCF.solver.Solution;
+import main.java.dk.smlaursen.TSNCF.solver.Solver;
+import main.java.dk.smlaursen.TSNCF.solver.GRASP.GraspSolver;
+import main.java.dk.smlaursen.TSNCF.solver.KShortestPath.KShortestPathSolver_SR;
 
 public class Main {
 	//Command line options

@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.application;
+package main.java.dk.smlaursen.TSNCF.application;
 
 public enum AVBClass {
 	CLASS_A(125,  2000), 

@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.architecture;
+package main.java.dk.smlaursen.TSNCF.architecture;
 
 public class Bridge extends Node {
 	private int aRateMBPS;

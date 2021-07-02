@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.solver;
+package main.java.dk.smlaursen.TSNCF.solver;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.application.Application;
 
 public class Multicast {
 		//The Application

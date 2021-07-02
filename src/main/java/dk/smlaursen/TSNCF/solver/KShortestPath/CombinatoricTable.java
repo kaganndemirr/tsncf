@@ -1,14 +1,14 @@
-package dk.smlaursen.TSNCF.solver.KShortestPath;
+package main.java.dk.smlaursen.TSNCF.solver.KShortestPath;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.jgrapht.GraphPath;
 
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
-import dk.smlaursen.TSNCF.solver.Unicast;
-import dk.smlaursen.TSNCF.solver.UnicastCandidates;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.solver.Unicast;
+import main.java.dk.smlaursen.TSNCF.solver.UnicastCandidates;
 
 public class CombinatoricTable {
 	//FIXME ensure no overflow

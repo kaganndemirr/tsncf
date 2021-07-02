@@ -1,7 +1,7 @@
-package dk.smlaursen.TSNCF.application;
+package main.java.dk.smlaursen.TSNCF.application;
 
 import java.util.Arrays;
-import dk.smlaursen.TSNCF.architecture.EndSystem;
+import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
 
 public class TTApplication extends Application{
 	private int ttInterval = 500;

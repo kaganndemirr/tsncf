@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.architecture;
+package main.java.dk.smlaursen.TSNCF.architecture;
 
 import java.util.ArrayList;
 import java.util.Collections;

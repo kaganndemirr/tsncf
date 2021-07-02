@@ -1,8 +1,8 @@
-package dk.smlaursen.TSNCF.solver;
+package main.java.dk.smlaursen.TSNCF.solver;
 
 import java.util.List;
 
-import dk.smlaursen.TSNCF.evaluator.Cost;
+import main.java.dk.smlaursen.TSNCF.evaluator.Cost;
 
 /** Return type wrapper */
 public class Solution {

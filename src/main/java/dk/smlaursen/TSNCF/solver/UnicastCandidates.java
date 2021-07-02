@@ -1,11 +1,11 @@
-package dk.smlaursen.TSNCF.solver;
+package main.java.dk.smlaursen.TSNCF.solver;
 
 import java.util.ArrayList;
 import org.jgrapht.GraphPath;
 
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.architecture.GCLEdge;
-import dk.smlaursen.TSNCF.architecture.Node;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
+import main.java.dk.smlaursen.TSNCF.architecture.Node;
 
 /** Class representing a routingCandidate, i.e. all considered routes for a given application streams*/
 public class UnicastCandidates extends Route{

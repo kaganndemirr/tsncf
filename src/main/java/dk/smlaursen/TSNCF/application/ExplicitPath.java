@@ -1,9 +1,9 @@
-package dk.smlaursen.TSNCF.application;
+package main.java.dk.smlaursen.TSNCF.application;
 
 import java.util.List;
 
-import dk.smlaursen.TSNCF.architecture.Bridge;
-import dk.smlaursen.TSNCF.architecture.GCL;
+import main.java.dk.smlaursen.TSNCF.architecture.Bridge;
+import main.java.dk.smlaursen.TSNCF.architecture.GCL;
 
 public class ExplicitPath {
 	private List<GCL> aGCL;

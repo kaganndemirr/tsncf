@@ -1,4 +1,4 @@
-package dk.smlaursen.TSNCF.parser;
+package main.java.dk.smlaursen.TSNCF.parser;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,14 +17,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import dk.smlaursen.TSNCF.application.Application;
-import dk.smlaursen.TSNCF.application.ExplicitPath;
-import dk.smlaursen.TSNCF.application.AVBApplication;
-import dk.smlaursen.TSNCF.application.AVBClass;
-import dk.smlaursen.TSNCF.application.TTApplication;
-import dk.smlaursen.TSNCF.architecture.Bridge;
-import dk.smlaursen.TSNCF.architecture.EndSystem;
-import dk.smlaursen.TSNCF.architecture.GCL;
+import main.java.dk.smlaursen.TSNCF.application.Application;
+import main.java.dk.smlaursen.TSNCF.application.ExplicitPath;
+import main.java.dk.smlaursen.TSNCF.application.AVBApplication;
+import main.java.dk.smlaursen.TSNCF.application.AVBClass;
+import main.java.dk.smlaursen.TSNCF.application.TTApplication;
+import main.java.dk.smlaursen.TSNCF.architecture.Bridge;
+import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
+import main.java.dk.smlaursen.TSNCF.architecture.GCL;
 
 public class ApplicationParser {
 	private static Logger logger = LoggerFactory.getLogger(ApplicationParser.class.getSimpleName());

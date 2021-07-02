@@ -1,10 +1,12 @@
-package dk.smlaursen.TSNCF.architecture;
+package test.java.dk.smlaursen.TSNCF.architecture;
 
 import static org.junit.Assert.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import main.java.dk.smlaursen.TSNCF.architecture.GCL;
+import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
