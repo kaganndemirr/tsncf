@@ -1,4 +1,4 @@
-package main.java.dk.smlaursen.TSNCF.util;
+package dk.smlaursen.TSNCF.util;
 
 import java.util.concurrent.ThreadLocalRandom;
 

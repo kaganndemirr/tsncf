@@ -1,6 +1,6 @@
-package main.java.dk.smlaursen.TSNCF.application;
+package dk.smlaursen.TSNCF.application;
 
-import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
+import dk.smlaursen.TSNCF.architecture.EndSystem;
 
 /** Model of a application */
 public abstract class Application {

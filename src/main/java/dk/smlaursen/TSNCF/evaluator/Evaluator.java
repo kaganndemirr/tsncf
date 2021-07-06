@@ -1,13 +1,13 @@
-package main.java.dk.smlaursen.TSNCF.evaluator;
+package dk.smlaursen.TSNCF.evaluator;
 
 import java.util.Collection;
 
-import main.java.dk.smlaursen.TSNCF.solver.Solver;
+import dk.smlaursen.TSNCF.solver.Solver;
 import org.jgrapht.Graph;
 
-import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
-import main.java.dk.smlaursen.TSNCF.architecture.Node;
-import main.java.dk.smlaursen.TSNCF.solver.Unicast;
+import dk.smlaursen.TSNCF.architecture.GCLEdge;
+import dk.smlaursen.TSNCF.architecture.Node;
+import dk.smlaursen.TSNCF.solver.Unicast;
 
 /**Classes implementing the Evaluator interface are used to score a given {@link Unicast} assignment based on the actual topology. 
  * The score denotes an associated cost of doing that assignment and can be used to direct a {@link Solver} towards a less costly assignment.*/

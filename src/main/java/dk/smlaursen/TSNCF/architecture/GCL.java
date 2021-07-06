@@ -1,4 +1,4 @@
-package main.java.dk.smlaursen.TSNCF.architecture;
+package dk.smlaursen.TSNCF.architecture;
 
 public class GCL {
 	private final int afrequency;

@@ -1,10 +1,10 @@
-package main.java.dk.smlaursen.TSNCF.solver;
+package dk.smlaursen.TSNCF.solver;
 
 import org.jgrapht.GraphPath;
 
-import main.java.dk.smlaursen.TSNCF.application.Application;
-import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
-import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import dk.smlaursen.TSNCF.application.Application;
+import dk.smlaursen.TSNCF.architecture.GCLEdge;
+import dk.smlaursen.TSNCF.architecture.Node;
 
 /** Class representing the routing of a single destination*/
 public class Unicast extends Route {

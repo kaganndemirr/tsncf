@@ -1,4 +1,4 @@
-package main.java.dk.smlaursen.TSNCF.output;
+package dk.smlaursen.TSNCF.output;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-import main.java.dk.smlaursen.TSNCF.application.TTApplication;
-import main.java.dk.smlaursen.TSNCF.solver.Multicast;
-import main.java.dk.smlaursen.TSNCF.solver.Solution;
-import main.java.dk.smlaursen.TSNCF.solver.Unicast;
+import dk.smlaursen.TSNCF.application.TTApplication;
+import dk.smlaursen.TSNCF.solver.Multicast;
+import dk.smlaursen.TSNCF.solver.Solution;
+import dk.smlaursen.TSNCF.solver.Unicast;
 
 public class FileWriter {
 	/**@param sol the {@link Solution}

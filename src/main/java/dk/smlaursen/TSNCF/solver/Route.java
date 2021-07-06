@@ -1,7 +1,7 @@
-package main.java.dk.smlaursen.TSNCF.solver;
+package dk.smlaursen.TSNCF.solver;
 
-import main.java.dk.smlaursen.TSNCF.application.Application;
-import main.java.dk.smlaursen.TSNCF.architecture.Node;
+import dk.smlaursen.TSNCF.application.Application;
+import dk.smlaursen.TSNCF.architecture.Node;
 
 /** Abstract class which both {@link Unicast} and {@link UnicastCandidates} extends, so that they easily can be mapped to each other
  *  using their hashCode*/

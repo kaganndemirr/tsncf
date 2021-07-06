@@ -1,7 +1,7 @@
-package main.java.dk.smlaursen.TSNCF.application;
+package dk.smlaursen.TSNCF.application;
 
 import java.util.Arrays;
-import main.java.dk.smlaursen.TSNCF.architecture.EndSystem;
+import dk.smlaursen.TSNCF.architecture.EndSystem;
 
 public class TTApplication extends Application{
 	private final ExplicitPath explicitRoute;

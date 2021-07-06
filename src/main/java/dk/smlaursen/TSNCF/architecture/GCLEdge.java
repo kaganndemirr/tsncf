@@ -1,4 +1,4 @@
-package main.java.dk.smlaursen.TSNCF.architecture;
+package dk.smlaursen.TSNCF.architecture;
 
 import java.io.Serial;
 import java.util.ArrayList;

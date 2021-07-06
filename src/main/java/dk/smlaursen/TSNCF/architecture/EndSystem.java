@@ -1,4 +1,4 @@
-package main.java.dk.smlaursen.TSNCF.architecture;
+package dk.smlaursen.TSNCF.architecture;
 
 /** Model of a endsystem*/
 public class EndSystem extends Node{

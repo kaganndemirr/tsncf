@@ -1,4 +1,4 @@
-package main.java.dk.smlaursen.TSNCF.solver.GRASP;
+package dk.smlaursen.TSNCF.solver.GRASP;
 
 import java.text.DecimalFormat;
 import java.time.Duration;
@@ -19,19 +19,19 @@ import org.jgrapht.Graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import main.java.dk.smlaursen.TSNCF.application.Application;
-import main.java.dk.smlaursen.TSNCF.architecture.GCLEdge;
-import main.java.dk.smlaursen.TSNCF.architecture.Node;
-import main.java.dk.smlaursen.TSNCF.evaluator.Cost;
-import main.java.dk.smlaursen.TSNCF.evaluator.Evaluator;
-import main.java.dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluatorCost;
-import main.java.dk.smlaursen.TSNCF.solver.Solver;
-import main.java.dk.smlaursen.TSNCF.solver.GraphPaths;
-import main.java.dk.smlaursen.TSNCF.solver.Multicast;
-import main.java.dk.smlaursen.TSNCF.solver.Route;
-import main.java.dk.smlaursen.TSNCF.solver.Solution;
-import main.java.dk.smlaursen.TSNCF.solver.Unicast;
-import main.java.dk.smlaursen.TSNCF.solver.UnicastCandidates;
+import dk.smlaursen.TSNCF.application.Application;
+import dk.smlaursen.TSNCF.architecture.GCLEdge;
+import dk.smlaursen.TSNCF.architecture.Node;
+import dk.smlaursen.TSNCF.evaluator.Cost;
+import dk.smlaursen.TSNCF.evaluator.Evaluator;
+import dk.smlaursen.TSNCF.evaluator.ModifiedAVBEvaluatorCost;
+import dk.smlaursen.TSNCF.solver.Solver;
+import dk.smlaursen.TSNCF.solver.GraphPaths;
+import dk.smlaursen.TSNCF.solver.Multicast;
+import dk.smlaursen.TSNCF.solver.Route;
+import dk.smlaursen.TSNCF.solver.Solution;
+import dk.smlaursen.TSNCF.solver.Unicast;
+import dk.smlaursen.TSNCF.solver.UnicastCandidates;
 
 public class GraspSolver implements Solver {
 	private Cost globalBestCost;

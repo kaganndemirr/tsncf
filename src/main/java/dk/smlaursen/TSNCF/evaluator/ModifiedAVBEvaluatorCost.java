@@ -1,10 +1,10 @@
-package main.java.dk.smlaursen.TSNCF.evaluator;
+package dk.smlaursen.TSNCF.evaluator;
 
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.dk.smlaursen.TSNCF.solver.Multicast;
+import dk.smlaursen.TSNCF.solver.Multicast;
 
 public class ModifiedAVBEvaluatorCost implements Cost, Comparator<ModifiedAVBEvaluatorCost> {
 	private double obj1;

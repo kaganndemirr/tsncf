@@ -1,6 +1,6 @@
-package main.java.dk.smlaursen.TSNCF.evaluator;
+package dk.smlaursen.TSNCF.evaluator;
 
-import main.java.dk.smlaursen.TSNCF.solver.Multicast;
+import dk.smlaursen.TSNCF.solver.Multicast;
 
 public class DisjointEdgesCost implements Cost {
 	private double cost;
