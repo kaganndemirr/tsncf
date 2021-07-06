@@ -13,9 +13,6 @@ import main.java.dk.smlaursen.TSNCF.solver.Solution;
 import main.java.dk.smlaursen.TSNCF.solver.Unicast;
 
 public class FileWriter {
-
-	private FileWriter(){};
-
 	/**@param sol the {@link Solution}
 	 * @param f the {@link File}.*/
 	public static void Output(Solution sol, File f){
@@ -34,9 +31,15 @@ public class FileWriter {
 				}
 			}
 		} catch (IOException e){
+			e.printStackTrace();
 
 		} finally{
-			try{writer.close();}catch(Exception ex){}
+			try{
+				assert writer != null;
+				writer.close();
+			} catch (Exception ex){
+				ex.printStackTrace();
+			}
 		}
 	}
 }

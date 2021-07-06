@@ -59,7 +59,7 @@ public class ModifiedAVBEvaluatorCost implements Cost, Comparator<ModifiedAVBEva
 	}
 
 	public enum Objective{
-		one, two, three;
+		one, two, three
 	}
 	
 	public String toString(){
@@ -67,7 +67,7 @@ public class ModifiedAVBEvaluatorCost implements Cost, Comparator<ModifiedAVBEva
 	}
 	
 	public String toDetailedString(){
-		return "Total : "+toString()+" | o1 "+obj1+", o2 "+obj2+", o3 "+obj3+" -- "+aWCDMap+" --";
+		return "Total : "+ this +" | o1 "+obj1+", o2 "+obj2+", o3 "+obj3+" -- "+aWCDMap+" --";
 	}
 }
 

@@ -25,8 +25,8 @@ public class GraphPaths {
 		//-- First we retrieve all individual graphPaths  -- //
 		///////////////////////////////////////////////////////
 
-		avbRoutes = new ArrayList<UnicastCandidates>();
-		ttRoutes  = new ArrayList<Unicast>();
+		avbRoutes = new ArrayList<>();
+		ttRoutes  = new ArrayList<>();
 		// Loop through each application and add it's K shortest paths to above arraylist
 		for(Application app : applications){
 			//If TT-Application (explicitlyRouted) parse to VLAN and continue
@@ -36,13 +36,13 @@ public class GraphPaths {
 			}
 
 			//Else SR-Application
-			KShortestPaths<Node, GCLEdge> shortestPaths = new KShortestPaths<Node, GCLEdge>(topology, app.getSource(), K, MAX_HOPS);
+			KShortestPaths<Node, GCLEdge> shortestPaths = new KShortestPaths<>(topology, app.getSource(), K, MAX_HOPS);
 
 			//For each destinations
 			int noOfDests = app.getDestinations().length;
 			for(int d = 0; d < noOfDests; d++){
 				//Up to K paths to the destination exists
-				ArrayList<GraphPath<Node,GCLEdge>> appPaths = new ArrayList<GraphPath<Node, GCLEdge>>(K);	
+				ArrayList<GraphPath<Node,GCLEdge>> appPaths = new ArrayList<>(K);
 				//Retrieve the K shortest paths to the destination
 				List<GraphPath<Node, GCLEdge>> sp = shortestPaths.getPaths(app.getDestinations()[d]);
 				//Abort If no such exists as the problem cannot be solved

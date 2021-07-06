@@ -2,8 +2,6 @@ package main.java.dk.smlaursen.TSNCF.output;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -16,8 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import org.jgrapht.Graph;
 import org.jgrapht.ext.JGraphXAdapter;
@@ -105,37 +101,26 @@ public class Visualizer{
 		zoomPanel.add(slider, BorderLayout.CENTER);
 		
 		mxGraphView view = canvasComponent.getGraph().getView();
-		slider.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				JSlider source = (JSlider)e.getSource();
-			    if (!source.getValueIsAdjusting()) {
-			        double scale = ((int) source.getValue())/10.0;
-			        SwingUtilities.invokeLater(new Runnable() {
-						@Override
-						public void run() {
-							view.setScale(scale);
-						}
-					});
-			    }
+		slider.addChangeListener(e -> {
+			JSlider source = (JSlider)e.getSource();
+			if (!source.getValueIsAdjusting()) {
+				double scale = source.getValue() /10.0;
+				SwingUtilities.invokeLater(() -> view.setScale(scale));
 			}
 		});
 	}
 
 	public void topologyPanel(){
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				JFrame frame = new JFrame();
-				frame.setLayout(new BorderLayout(50,50));
-				frame.add(canvasComponent, BorderLayout.CENTER);				
-				frame.add(comboBox, BorderLayout.SOUTH);
-				frame.add(zoomPanel, BorderLayout.EAST);
-				frame.setTitle("Topology Visualization");
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.pack();
-				frame.setVisible(true);		
-			}
+		SwingUtilities.invokeLater(() -> {
+			JFrame frame = new JFrame();
+			frame.setLayout(new BorderLayout(50,50));
+			frame.add(canvasComponent, BorderLayout.CENTER);
+			frame.add(comboBox, BorderLayout.SOUTH);
+			frame.add(zoomPanel, BorderLayout.EAST);
+			frame.setTitle("Topology Visualization");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.pack();
+			frame.setVisible(true);
 		});
 	}
 
@@ -154,14 +139,11 @@ public class Visualizer{
 			edgeSet.addAll(route.getUnicasts().get(i).getRoute().getEdgeList());
 		}
 
-		highlightedVls = mxGraphModel.filterCells(cells.toArray(), new Filter() {
-			@Override
-			public boolean filter(Object cell) {
-				if(cell instanceof mxCell mxc){
-					return mxc.getValue() instanceof DefaultEdge && edgeSet.contains(mxc.getValue());
-				}
-				return false;
+		highlightedVls = mxGraphModel.filterCells(cells.toArray(), cell -> {
+			if(cell instanceof mxCell mxc){
+				return mxc.getValue() instanceof DefaultEdge && edgeSet.contains(mxc.getValue());
 			}
+			return false;
 		});
 		
 		SwingUtilities.invokeLater(() -> {

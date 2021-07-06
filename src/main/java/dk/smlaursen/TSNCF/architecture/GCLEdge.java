@@ -2,8 +2,6 @@ package main.java.dk.smlaursen.TSNCF.architecture;
 
 import java.io.Serial;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ public class GCLEdge extends DefaultEdge {
 	private static final long serialVersionUID = 3927841355223720495L;
 	private static final double MAX_ALLOC = 0.75;
 
-	private final List<GCL> aGCLList = new LinkedList<GCL>();
+	private final List<GCL> aGCLList = new LinkedList<>();
 	private final int aRate;
 	private final double aLatency;
 
@@ -88,7 +86,7 @@ public class GCLEdge extends DefaultEdge {
 	}
 
 	private List<GCE> convertGCLToGCEs(List<GCL> gcls){
-		List<GCE> gces = new ArrayList<GCE>();
+		List<GCE> gces = new ArrayList<>();
 		//Convert GCL to GCE and add to gces list
 		for(GCL gcl : gcls){
 			double period = 500.0 / gcl.getFrequency();
@@ -98,13 +96,10 @@ public class GCLEdge extends DefaultEdge {
 			}
 		}
 		//Sort GCEs on their start-times
-		Collections.sort(gces, new Comparator<GCE>() {
-			@Override
-			public int compare(GCE o1, GCE o2) {
-				Double g1 = o1.getStart();
-				Double g2 = o2.getStart();
-				return g1.compareTo(g2);
-			}
+		gces.sort((o1, o2) -> {
+			Double g1 = o1.getStart();
+			Double g2 = o2.getStart();
+			return g1.compareTo(g2);
 		});
 		//Return the sorted list
 		return gces;

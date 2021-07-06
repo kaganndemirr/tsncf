@@ -157,20 +157,17 @@ public class GraspSolver implements Solver {
 		}
 
 		private List<Unicast> constructSolution(){
-			List<Unicast> partialSolution = new ArrayList<Unicast>();
 
 			//Add all TT-Routes
-			partialSolution.addAll(ttRoutes);
+			List<Unicast> partialSolution = new ArrayList<>(ttRoutes);
 
 			//First we randomize the order of considering applications
-			List<UnicastCandidates> aTemporaryList = new ArrayList<UnicastCandidates>(avbRoutes);
-			List<UnicastCandidates> aRandomizedRoutingCandidateList = new ArrayList<UnicastCandidates>(avbRoutes.size());
-			while(!aTemporaryList.isEmpty()){
+			List<UnicastCandidates> aTemporaryList = new ArrayList<>(avbRoutes);
+			List<UnicastCandidates> aRandomizedRoutingCandidateList = new ArrayList<>(avbRoutes.size());
+			while(!aTemporaryList.isEmpty()) {
 				int index = ThreadLocalRandom.current().nextInt(aTemporaryList.size());
 				aRandomizedRoutingCandidateList.add(aTemporaryList.remove(index));
 			}
-			//Finished with list Mark for GC sweep
-			aTemporaryList = null;
 
 			//Then within an application, we select the
 			for (UnicastCandidates uc : aRandomizedRoutingCandidateList) {
@@ -208,7 +205,7 @@ public class GraspSolver implements Solver {
 			Cost cost = aEval.evaluate(solution, aTopology);
 			Cost bestCost = cost;
 
-			Map<Route, Route> mapping = new HashMap<Route, Route>(solution.size());
+			Map<Route, Route> mapping = new HashMap<>(solution.size());
 			//As UnicastCandidates and Unicasts uses same hash function, they can be used both as key and values
 			for(UnicastCandidates uc : avbRoutes){
 				mapping.put(uc, uc);

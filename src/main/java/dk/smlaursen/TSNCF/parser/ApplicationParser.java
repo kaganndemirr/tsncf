@@ -77,7 +77,6 @@ public class ApplicationParser {
 
 	/**Parses an element into a {@link AVBApplication}
 	 * @param srAppEle the AVBApplicationElement
-	 * @throws
 	 * @return The corresponding {@link AVBApplication}*/
 	private static AVBApplication getAVBApplication(Element srAppEle){
 		String name = srAppEle.getAttribute("name");

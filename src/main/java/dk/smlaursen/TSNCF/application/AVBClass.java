@@ -7,7 +7,7 @@ public enum AVBClass {
 	private final int aInterval;
 	private final int aMaxEndToEndDelay;
 	
-	private AVBClass(int interval, int maxDelay){
+	AVBClass(int interval, int maxDelay){
 		this.aInterval = interval;
 		this.aMaxEndToEndDelay = maxDelay;
 	}

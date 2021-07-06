@@ -9,7 +9,7 @@ import main.java.dk.smlaursen.TSNCF.architecture.Node;
 /** Class representing the routing of a single destination*/
 public class Unicast extends Route {
 	//The ArrayList of GraphPaths (One for each destination)
-	private GraphPath<Node, GCLEdge> aRoute;
+	private final GraphPath<Node, GCLEdge> aRoute;
 	
 	public Unicast(Application app, Node destNode,  GraphPath<Node, GCLEdge> route){
 		aApp = app;

@@ -24,7 +24,6 @@ import main.java.dk.smlaursen.TSNCF.solver.Unicast;
 /** This {@link Evaluator} is used for calculating the cost of the given {@link Unicast} assignment taking SR- and TT-timings into account.*/
 public class ModifiedAVBEvaluator implements Evaluator{
 	//----------- PENALTIES ----------------------
-	/** The threshold of WCRT / DEADLINE for when starting to increase with {@value #THRESHOLD_EXCEEDED_PENALITY} per. percent*/
 	private final static double PENALITY_THRESHOLD = 0.0;
 	//----------- CONFIGURATION ------------------
 	/** The maximum BE frame-size*/
@@ -34,8 +33,8 @@ public class ModifiedAVBEvaluator implements Evaluator{
 
 	@Override
 	public Cost evaluate(Collection<Unicast> route, Graph<Node, GCLEdge> graph) {
-		Map<GCLEdge, Double> allocMap = new HashMap<GCLEdge, Double>(); 
-		Map<GCLEdge, Double> ttAllocMap = new HashMap<GCLEdge, Double>();
+		Map<GCLEdge, Double> allocMap = new HashMap<>();
+		Map<GCLEdge, Double> ttAllocMap = new HashMap<>();
 		List<Multicast> multicasts = Multicast.generateMulticasts(route);
 		ModifiedAVBEvaluatorCost cost = new ModifiedAVBEvaluatorCost();
 
@@ -45,7 +44,7 @@ public class ModifiedAVBEvaluator implements Evaluator{
 			if(m.getApplication() instanceof AVBApplication app){
 				for(String mode : app.getModes()){
 					if(!modeMap.containsKey(mode)){
-						modeMap.put(mode, new HashSet<Multicast>());
+						modeMap.put(mode, new HashSet<>());
 					}
 					modeMap.get(mode).add(m);
 				}
@@ -156,7 +155,7 @@ public class ModifiedAVBEvaluator implements Evaluator{
 		//Time to transmit frame_size
 		double tStreamPacket = (app.getMaxFrameSize() + 8)*8 / edge.getRateMbps();
 		//Inter-Frame-Gap
-		double tIFG = 12*8 / edge.getRateMbps();
+		double tIFG = 12 * 8 / edge.getRateMbps();
 		//Sum of transmission times of all Class A stream frames in a 125us interval
 		double tAllStreams = totalAlloc_mbps * app.getInterval() / edge.getRateMbps();
 		return edge.getLatency() + edge.calculateWorstCaseInterference((tMaxPacket+tIFG +
