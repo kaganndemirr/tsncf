@@ -88,7 +88,7 @@ public class Main {
 			}
 			
 			//Parse Topology
-			logger.debug("Parsing Topology from "+net.getName());
+			logger.debug("Parsing Topology from " + net.getName());
 			Graph<Node, GCLEdge> graph= TopologyParser.parse(net,rate);
 			logger.info("Topology parsed!");
 
@@ -100,7 +100,7 @@ public class Main {
 			}
 
 			//Parse Applications
-			logger.debug("Parsing application set from "+app.getName());
+			logger.debug("Parsing application set from " + app.getName());
 			List<Application> apps = ApplicationParser.parse(app);
 			logger.info("Applications parsed! ");
 
@@ -116,13 +116,13 @@ public class Main {
 				default -> throw new Error("Aborting : Solver " + solver + " unrecognized.");
 			};
 			
-			logger.info("Solving problem using "+solver+" solver");
+			logger.info("Solving problem using " + solver + " solver");
 			Solution sol = s.solve(graph, apps, new ModifiedAVBEvaluator(), Duration.ofSeconds(60));
 			
 			if(sol.getRouting() == null || sol.getRouting().isEmpty()){
 				logger.info("No solution could be found ");
 			} else {
-				logger.info("Found solution : "+sol.getCost().toDetailedString());
+				logger.info("Found solution : " + sol.getCost().toDetailedString());
 				if(display){
 					logger.info("Displaying solution");
 					vis.addSolutions(sol.getRouting());
