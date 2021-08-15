@@ -70,7 +70,7 @@ public class Main {
 			File app = new File(line.getOptionValue(APP_ARG));
 
 			if(line.hasOption(VERBOSE_ARG)){
-				System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "TRACE");
+				System.setProperty(org.slf4j.simple.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "TRACE");
 			}
 			Logger logger = LoggerFactory.getLogger(Main.class.getSimpleName());
 			boolean display = line.hasOption(DISP_ARG);

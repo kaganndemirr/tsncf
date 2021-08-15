@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.jgrapht.Graph;
-import org.jgrapht.alg.KShortestPaths;
+import org.jgrapht.alg.shortestpath.EppsteinKShortestPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +25,7 @@ import dk.smlaursen.TSNCF.solver.Solver;
 import dk.smlaursen.TSNCF.solver.Unicast;
 import dk.smlaursen.TSNCF.solver.UnicastCandidates;
 
-/**The KShortestPathSolver_SR relies on the {@link KShortestPaths} algorithm in the jgrapht library to calculate the K shortest paths
+/**The KShortestPathSolver_SR relies on the {@link EppsteinKShortestPath} algorithm in the jgrapht library to calculate the K shortest paths
  * for each src-dest nodes of an AVBApplication. Naturally, the greater K the better solution can be found, but as the shortest paths are in sorted order, the simples routes (Often yielding the best results) are evaluated first. 
  * So increase K with care, as it can quickly lead to excessive computation time use. */
 public class KShortestPathSolver_SR implements Solver {

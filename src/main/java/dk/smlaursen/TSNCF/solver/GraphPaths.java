@@ -6,8 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
-import org.jgrapht.alg.KShortestPaths;
-import org.jgrapht.graph.GraphPathImpl;
+import org.jgrapht.alg.shortestpath.EppsteinKShortestPath;
+import org.jgrapht.graph.GraphWalk;
 import dk.smlaursen.TSNCF.application.Application;
 import dk.smlaursen.TSNCF.application.TTApplication;
 import dk.smlaursen.TSNCF.architecture.GCL;
@@ -36,7 +36,7 @@ public class GraphPaths {
 			}
 
 			//Else SR-Application
-			KShortestPaths<Node, GCLEdge> shortestPaths = new KShortestPaths<>(topology, app.getSource(), K, MAX_HOPS);
+			EppsteinKShortestPath<Node, GCLEdge> shortestPaths = new EppsteinKShortestPath<>(topology);
 
 			//For each destinations
 			int noOfDests = app.getDestinations().length;
@@ -44,7 +44,7 @@ public class GraphPaths {
 				//Up to K paths to the destination exists
 				ArrayList<GraphPath<Node,GCLEdge>> appPaths = new ArrayList<>(K);
 				//Retrieve the K shortest paths to the destination
-				List<GraphPath<Node, GCLEdge>> sp = shortestPaths.getPaths(app.getDestinations()[d]);
+				List<GraphPath<Node, GCLEdge>> sp = shortestPaths.getPaths(app.getSource(), app.getDestinations()[d], K);
 				//Abort If no such exists as the problem cannot be solved
 				if(sp == null){
 					throw new InputMismatchException("Aborting, could not find a path from "+app.getSource()+" to "+app.getDestinations()[d]+" within "+MAX_HOPS+" hops");
@@ -53,6 +53,7 @@ public class GraphPaths {
 					//Remove excess reserved space
 					appPaths.trimToSize();
 					//Add paths to global VLAN list
+					new UnicastCandidates(app, app.getDestinations()[d], appPaths).get_cost();
 					avbRoutes.add(new UnicastCandidates(app, app.getDestinations()[d], appPaths));
 				}
 			}
@@ -90,7 +91,7 @@ public class GraphPaths {
 					//Put the GCL on all the GCLEdges in the edgeList
 					edgeList.get(u).addGCL(gcls);
 				}
-				GraphPath<Node, GCLEdge> gp = new GraphPathImpl<>(graph, ttApp.getSource(), ttApp.getDestinations()[i], edgeList, 1.0);
+				GraphPath<Node, GCLEdge> gp = new GraphWalk<>(graph, ttApp.getSource(), ttApp.getDestinations()[i], edgeList, 1.0);
 				aRouting.add(new Unicast(ttApp,ttApp.getDestinations()[i], gp));
 			}
 			

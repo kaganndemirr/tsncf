@@ -10,13 +10,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
-    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-core:0.9.1" level="project" />
-    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-ext:0.9.1" level="project" />
-    <orderEntry type="library" name="Maven: org.tinyjee.jgraphx:jgraphx:2.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: jgraph:jgraph:5.13.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.31" level="project" />
+    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-core:1.5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jheaps:jheaps:0.13" level="project" />
+    <orderEntry type="library" name="Maven: org.jgrapht:jgrapht-ext:1.5.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.vlsi.mxgraph:jgraphx:4.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.0-alpha2" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.13.2" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.31" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:2.0.0-alpha2" level="project" />
   </component>
 </module>

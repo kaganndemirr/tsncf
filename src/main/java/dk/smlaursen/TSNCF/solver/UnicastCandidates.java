@@ -21,5 +21,11 @@ public class UnicastCandidates extends Route{
 	public ArrayList<GraphPath<Node, GCLEdge>> getCandidates(){
 		return aRouting;
 	}
+
+	public void get_cost(){
+		for (GraphPath<Node, GCLEdge> nodeGCLEdgeGraphPath : aRouting) {
+			System.out.println(nodeGCLEdgeGraphPath.getWeight());
+		}
+	}
 }
 
